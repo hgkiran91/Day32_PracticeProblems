@@ -1,0 +1,18 @@
+create database payroll_servicedb;
+show databases;
+use payroll_servicedb;
+create table employee_payroll(id int auto_increment, name varchar(40), salary double, start_date date, primary key(id));
+desc employee_payroll;
+insert into employee_payroll(name, salary, start_date) values
+('Bill', 100000.00, '2018-01-03'),
+('Mark', 200000.00, '2019-11-13'),
+('Charlie', 300000.00, '2020-5-21');
+select * from employee_payroll;
+select * from employee_payroll where name='Bill';
+delete from employee_payroll where name='Bill';
+insert into employee_payroll(name, salary, start_date) values
+('Bill', 100000.00, '2018-01-03');
+select * from employee_payroll where start between cast('2018-01-01' as date) and date(now());
+alter table employee_payroll add gender char(1) after name;
+update employee_payroll set gender ='m' where name = 'Bill' or name = 'Charlie';
+select sum(salary) from employee_payroll where gender = 'F' group by gender;
